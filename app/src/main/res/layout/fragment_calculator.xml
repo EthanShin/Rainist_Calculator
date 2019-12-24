@@ -14,64 +14,131 @@
         android:layout_height="match_parent"
         tools:context=".ui.main.CalculatorFragment">
 
-        <androidx.gridlayout.widget.GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_button"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:backgroundTint="@color/colorOpButton2"
+            android:onClick="@{() -> viewModel.selectOperator('+')}"
+            android:text="+"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/sub_button"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/mul_button"
+            app:layout_constraintHorizontal_chainStyle="spread" />
 
-            <Button
-                android:onClick="@{() -> viewModel.selectOperator('+')}"
-                android:text="+"
-                app:layout_row="0"
-                app:layout_column="0" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/sub_button"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:backgroundTint="@color/colorOpButton2"
+            android:onClick="@{() -> viewModel.selectOperator('-')}"
+            android:text="-"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toEndOf="@+id/add_button"
+            app:layout_constraintEnd_toStartOf="@+id/cancel_button"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/rest_button"
+            app:layout_constraintHorizontal_chainStyle="spread" />
 
-            <Button
-                android:onClick="@{() -> viewModel.selectOperator('-')}"
-                android:text="-"
-                app:layout_row="0"
-                app:layout_column="1" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:backgroundTint="@color/colorOpButton"
+            android:onClick="@{() -> viewModel.selectOperator('c')}"
+            android:text="C"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toEndOf="@+id/sub_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/result_button"
+            app:layout_constraintHorizontal_chainStyle="spread" />
 
-            <Button
-                android:onClick="@{() -> viewModel.selectOperator('c')}"
-                android:text="C"
-                app:layout_row="0"
-                app:layout_column="2" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mul_button"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:backgroundTint="@color/colorOpButton2"
+            android:onClick="@{() -> viewModel.selectOperator('x')}"
+            android:text="X"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/rest_button"
+            app:layout_constraintTop_toBottomOf="@+id/add_button"
+            app:layout_constraintBottom_toTopOf="@+id/zero_button"
+            app:layout_constraintHorizontal_chainStyle="spread" />
 
-            <Button
-                android:onClick="@{() -> viewModel.selectOperator('x')}"
-                android:text="X"
-                app:layout_row="1"
-                app:layout_column="0" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/rest_button"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:backgroundTint="@color/colorOpButton2"
+            android:onClick="@{() -> viewModel.selectOperator('%')}"
+            android:text="%"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toEndOf="@+id/mul_button"
+            app:layout_constraintEnd_toStartOf="@+id/result_button"
+            app:layout_constraintTop_toBottomOf="@+id/sub_button"
+            app:layout_constraintBottom_toTopOf="@+id/one_button"
+            app:layout_constraintHorizontal_chainStyle="spread" />
 
-            <Button
-                android:onClick="@{() -> viewModel.selectOperator('%')}"
-                android:text="%"
-                app:layout_row="1"
-                app:layout_column="1"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/result_button"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:backgroundTint="@color/colorOpButton"
+            android:onClick="@{() -> viewModel.selectOperator('=')}"
+            android:text="="
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toEndOf="@+id/rest_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cancel_button"
+            app:layout_constraintBottom_toTopOf="@+id/two_button"
+            app:layout_constraintHorizontal_chainStyle="spread" />
 
-            <Button
-                android:onClick="@{() -> viewModel.selectOperator('=')}"
-                android:text="="
-                app:layout_row="1"
-                app:layout_column="2"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/zero_button"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:backgroundTint="@color/colorNumButton"
+            android:onClick="@{() -> viewModel.selectOperand(0)}"
+            android:text="0"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/one_button"
+            app:layout_constraintTop_toBottomOf="@+id/mul_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread" />
 
-            <Button
-                android:onClick="@{() -> viewModel.selectOperand(0)}"
-                android:text="0"
-                app:layout_row="2"
-                app:layout_column="0" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/one_button"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:backgroundTint="@color/colorNumButton"
+            android:onClick="@{() -> viewModel.selectOperand(1)}"
+            android:text="1"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toEndOf="@+id/zero_button"
+            app:layout_constraintEnd_toStartOf="@+id/two_button"
+            app:layout_constraintTop_toBottomOf="@+id/rest_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread" />
 
-            <Button
-                android:onClick="@{() -> viewModel.selectOperand(1)}"
-                android:text="1"
-                app:layout_row="2"
-                app:layout_column="1" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/two_button"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:backgroundTint="@color/colorNumButton"
+            android:onClick="@{() -> viewModel.selectOperand(2)}"
+            android:text="2"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toEndOf="@+id/one_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/result_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread" />
 
-            <Button
-                android:onClick="@{() -> viewModel.selectOperand(2)}"
-                android:text="2"
-                app:layout_row="2"
-                app:layout_column="2" />
-
-        </androidx.gridlayout.widget.GridLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -75,6 +75,7 @@ class MainViewModel() : ViewModel() {
             '%' -> firstNumber?.rem(secondNumber!!)
             else -> firstNumber!!
         }
+
         _number.value = firstNumber.toString()
     }
 
