@@ -4,12 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class MainViewModel : ViewModel() {
+class MainViewModel() : ViewModel() {
 
     // Display 화면에 보여지는 숫자
     private val _number = MutableLiveData<String>("0")
-    val number: LiveData<String>
+    var number: LiveData<String>
         get() = _number
+        set(value) {_number.value = value.value}
 
     // 연산을 위한 첫번째, 두번째 숫자, 연산자
     var firstNumber: Int? = null
@@ -25,6 +26,7 @@ class MainViewModel : ViewModel() {
             if (isNextEqual) {
                 // '='의 결과 다음에는 결과값이 지워짐
                 firstNumber = null
+                operator = null
             } else {
                 // '='를 제외한 연산자가 입력되면 다음 숫자를 받을 준비를 함
                 secondNumber = null
@@ -71,8 +73,13 @@ class MainViewModel : ViewModel() {
             '-' -> firstNumber?.minus(secondNumber!!)
             'x' -> firstNumber?.times(secondNumber!!)
             '%' -> firstNumber?.rem(secondNumber!!)
-            else -> secondNumber!!
+            else -> firstNumber!!
         }
         _number.value = firstNumber.toString()
+    }
+
+    // 초기값 설정
+    fun initValue(num: String) {
+        _number.postValue(num)
     }
 }
